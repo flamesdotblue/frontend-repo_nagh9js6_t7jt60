@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Star, ShoppingCart } from "lucide-react";
+import { Star, Shield, Truck, CreditCard } from "lucide-react";
 
 const reviews = [
   {
@@ -34,7 +34,7 @@ export default function Showcase() {
       <Gallery />
       <About />
       <Reviews />
-      <CheckoutCTA />
+      <Checkout />
       <Footer />
     </div>
   );
@@ -73,7 +73,7 @@ function About() {
           <p className="text-white/70 mt-4">
             We believe self-expression should feel good—on you and for the planet. Every piece is built to last, designed to be reimagined.
           </p>
-          <div className="mt-6 flex gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             <span className="px-3 py-1 rounded-full border border-white/10 text-white/70 text-xs">Low-impact dyes</span>
             <span className="px-3 py-1 rounded-full border border-white/10 text-white/70 text-xs">Ethical supply chain</span>
             <span className="px-3 py-1 rounded-full border border-white/10 text-white/70 text-xs">Carbon offset shipping</span>
@@ -113,21 +113,63 @@ function Reviews() {
   );
 }
 
-function CheckoutCTA() {
+function Checkout() {
   return (
     <section id="checkout" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-blue-500/20 via-blue-400/10 to-transparent p-8 md:p-12">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white">Ready to check out?</h3>
-            <p className="text-white/70 mt-2">Secure payment powered by industry-standard encryption. 30-day returns. Global shipping.</p>
+      <div className="grid lg:grid-cols-2 gap-8">
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-6 lg:p-8 space-y-6">
+          <h3 className="text-xl font-bold text-white">Shipping Information</h3>
+          <form className="space-y-4" onSubmit={(e)=>e.preventDefault()}>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <input className="px-3 py-3 rounded-md bg-black/40 border border-white/10 text-white placeholder-white/30" placeholder="First name" required />
+              <input className="px-3 py-3 rounded-md bg-black/40 border border-white/10 text-white placeholder-white/30" placeholder="Last name" required />
+            </div>
+            <input className="w-full px-3 py-3 rounded-md bg-black/40 border border-white/10 text-white placeholder-white/30" placeholder="Email" type="email" required />
+            <input className="w-full px-3 py-3 rounded-md bg-black/40 border border-white/10 text-white placeholder-white/30" placeholder="Phone" type="tel" />
+            <input className="w-full px-3 py-3 rounded-md bg-black/40 border border-white/10 text-white placeholder-white/30" placeholder="Address" required />
+            <div className="grid sm:grid-cols-3 gap-4">
+              <input className="px-3 py-3 rounded-md bg-black/40 border border-white/10 text-white placeholder-white/30" placeholder="City" required />
+              <input className="px-3 py-3 rounded-md bg-black/40 border border-white/10 text-white placeholder-white/30" placeholder="State" required />
+              <input className="px-3 py-3 rounded-md bg-black/40 border border-white/10 text-white placeholder-white/30" placeholder="ZIP" required />
+            </div>
+          </form>
+
+          <div className="pt-4 grid sm:grid-cols-3 gap-3 text-white/80">
+            <div className="p-3 rounded-xl border border-white/10 bg-white/5 flex items-center gap-2"><Shield size={18}/> Encrypted checkout</div>
+            <div className="p-3 rounded-xl border border-white/10 bg-white/5 flex items-center gap-2"><Truck size={18}/> Global shipping</div>
+            <div className="p-3 rounded-xl border border-white/10 bg-white/5 flex items-center gap-2"><CreditCard size={18}/> Pay with card</div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3 sm:justify-end">
-            <a href="#customize" className="px-5 py-3 rounded-md border border-white/15 text-white/90 hover:text-white hover:border-white/30 transition">Back to Design</a>
-            <button className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-md bg-blue-500 hover:bg-blue-400 text-black font-semibold transition">
-              <ShoppingCart size={18} />
-              Secure Checkout
-            </button>
+        </div>
+
+        <div className="space-y-6">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 lg:p-8">
+            <h3 className="text-xl font-bold text-white mb-4">Order Summary</h3>
+            <div className="flex items-center gap-4">
+              <div className="w-20 h-20 rounded-xl bg-gradient-to-b from-white/10 to-transparent border border-white/10" />
+              <div className="flex-1">
+                <p className="text-white">Custom Hoodie</p>
+                <p className="text-white/60 text-sm">Color: Electric | Size: M | Placement: Front</p>
+              </div>
+              <p className="text-white font-semibold">$69</p>
+            </div>
+            <div className="mt-4 space-y-2 text-sm text-white/70">
+              <div className="flex justify-between"><span>Subtotal</span><span>$69.00</span></div>
+              <div className="flex justify-between"><span>Shipping</span><span>$6.00</span></div>
+              <div className="flex justify-between"><span>Tax</span><span>$0.00</span></div>
+              <div className="border-t border-white/10 pt-2 flex justify-between text-white"><span>Total</span><span className="font-semibold">$75.00</span></div>
+            </div>
+          </div>
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 lg:p-8">
+            <h3 className="text-xl font-bold text-white mb-4">Payment</h3>
+            <form className="space-y-4" onSubmit={(e)=>e.preventDefault()}>
+              <input className="w-full px-3 py-3 rounded-md bg-black/40 border border-white/10 text-white placeholder-white/30" placeholder="Cardholder name" required />
+              <input className="w-full px-3 py-3 rounded-md bg-black/40 border border-white/10 text-white placeholder-white/30" placeholder="Card number" required />
+              <div className="grid grid-cols-2 gap-4">
+                <input className="px-3 py-3 rounded-md bg-black/40 border border-white/10 text-white placeholder-white/30" placeholder="MM/YY" required />
+                <input className="px-3 py-3 rounded-md bg-black/40 border border-white/10 text-white placeholder-white/30" placeholder="CVC" required />
+              </div>
+              <button className="w-full mt-2 px-5 py-3 rounded-md bg-blue-500 hover:bg-blue-400 text-black font-semibold transition">Pay $75.00</button>
+            </form>
           </div>
         </div>
       </div>
@@ -138,9 +180,9 @@ function CheckoutCTA() {
 function Footer() {
   return (
     <footer className="border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-2 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-2 gap-8">
         <div>
-          <h4 className="text-white font-semibold">Meetzzz</h4>
+          <h4 className="text-white font-semibold text-lg">Meetzzz</h4>
           <p className="text-white/60 text-sm mt-2 max-w-md">Join the newsletter for drops, inspo, and early access to limited colorways.</p>
           <form className="mt-4 flex gap-2" onSubmit={(e) => e.preventDefault()}>
             <input type="email" required placeholder="you@domain.com" className="flex-1 px-3 py-2 rounded-md bg-black/60 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500" />
